@@ -74,6 +74,23 @@ const resolvers = {
 
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    removeBook: async (parent, args, context) => {
+        if (context.user) {
+            const book = await Book.delete({ bookId });
+    
+            await User.findByIdAndUpdate(
+              { _id: context.user._id },
+              { $splice: { books: book.bookId } },
+              { new: true }
+            );
+    
+            return book;
+          }
+    
+          throw new AuthenticationError('You need to be logged in!');
+    },
+
     addReaction: async (parent, { thoughtId, reactionBody }, context) => {
       if (context.user) {
         const updatedThought = await Thought.findOneAndUpdate(
