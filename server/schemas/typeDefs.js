@@ -31,11 +31,11 @@ const typeDefs = gql`
 
   input SaveListInput {
     bookId: ID!
-    authors: [{}]!
+    authors: []!
     description: String!
     title: String!
     image: String!
-    link: Int!
+    link: String!
   }
 
   type Mutation {
