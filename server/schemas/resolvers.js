@@ -61,15 +61,15 @@ const resolvers = {
     },
     saveBook: async (parent, args, context) => {
       if (context.user) {
-        const thought = await Thought.create({ ...args, username: context.user.username });
+        const book = await Book.create({ ...args, username: context.user.username });
 
         await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { thoughts: thought._id } },
+          { $push: { books: book.bookId } },
           { new: true }
         );
 
-        return thought;
+        return book;
       }
 
       throw new AuthenticationError('You need to be logged in!');
