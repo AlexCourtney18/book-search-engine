@@ -35,7 +35,7 @@ const SignupForm = () => {
 
     try {
       const { data } = await addUser({
-        variables: { ...formState },
+        variables: { ...userFormData },
       });
 
       Auth.login(data.addUser.token);
@@ -134,6 +134,7 @@ const SignupForm = () => {
           variant='success'>
           Submit
         </Button>
+        {error && <div>Login failed</div>}
       </Form>
     </>
   );
