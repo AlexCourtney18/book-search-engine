@@ -11,7 +11,7 @@ const typeDefs = gql`
 
   type Book {
     bookId: ID
-    authors: String
+    authors: [String!]
     description: String
     title: String
     image: String
@@ -25,10 +25,6 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    users: [User]
-    user(username: String!): User
-    books(username: String): [Book]
-    book(bookId: ID!): Book
   }
 
   input SaveListInput {
