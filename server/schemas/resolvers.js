@@ -60,10 +60,11 @@ const resolvers = {
       return { token, user };
     },
     saveBook: async (parent, args, context) => {
+
+      console.log("saveBook RESOLVER");
+
       if (context.user) {
         //const book = await Book.create({ ...args, username: context.user.username });
-
-        console.log("saveBook RESOLVER");
 
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
