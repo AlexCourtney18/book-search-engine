@@ -15,7 +15,6 @@ const typeDefs = gql`
     description: String
     title: String
     image: String
-    link: Int
   }
 
   type Auth {
@@ -33,13 +32,12 @@ const typeDefs = gql`
     description: String!
     title: String!
     image: String
-    link: String
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveBook(input: SaveListInput): User!
+    saveBook(input: SaveListInput): Book
     removeBook(bookId: String!):User
   }
 `;

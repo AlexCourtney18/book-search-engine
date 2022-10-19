@@ -66,14 +66,26 @@ const SearchBooks = () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
+      console.log("TOKEN ERROR!");
       return false;
     }
 
     try {
+      console.log("TRY saveBook");
+      // console.log(bookId, "TRY ID");
+      // console.log(bookToSave.authors, "TRY AUTHOR");
+      // console.log(bookToSave.description, "TRY DESCRIPTION");
+      // console.log(bookToSave.title, "TRY TITLE");
+      // console.log(bookToSave.image, "TRY IMAGE");
+      // console.log(bookToSave.link, "TRY LINK!!!");
+
+      const authorClean = JSON.stringify(bookToSave.authors);
+      console.log(authorClean, "STRINGED AUTHOR");
       // const response = await saveBook(bookToSave, token);
       await saveBook({
-        variables: { bookId, authors: bookToSave.authors, description: bookToSave.description, title: bookToSave.title, image: bookToSave.image, link: bookToSave.link },
+        variables: { ...bookToSave },
       });
+      
 
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
